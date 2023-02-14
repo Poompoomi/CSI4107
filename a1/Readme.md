@@ -1,90 +1,37 @@
-Text collection
---------------
+﻿# CSI4107 Data Retrieval - Assignment 1 - Group 12
 
-The collection includes 79923 documents, grouped in 322 files, from the Associated Press, 
-1988. The <TEXT> field should be indexed for each document. 
-Optionally, the <HEAD> can be used. In the DOCNO field, 
-the code uniquely identifies the document. An example of code is AP880212-0004
+### Assignment Reference
+https://www.site.uottawa.ca/~diana/csi4107/A1_2023.htm
+## Group 12 Members & Contribution:
+* Simon Proulx 300067852 - Part of Step 1 & general project organization (github, report file, etc.)
+* Manav Patel 300074687 - Part of Step 1 & Step 2
+* Mahdi Chiboub 300094626 - Step 3 in its entirety
 
+## Setting Up
+Prerequisites:
 
-Queries (Topics)
----------------
+1.  `python3` installed and executable.
+2.  `nltk` libaries installed (all of these can be downloaded using `python3` -> `import nltk` -> `nltk.download('corpus | tokenize | stem.porter')`
+3. `Beautifulsoup bs4`
 
-There are 50 Test Topics. The topics have a number, a title, a 
-description and a longer explanation called narrative. You can use the 
-content of the <title>, <desc>, and <narr> fields for each query to 
-extract keywords (or, if you prefer, only <title>, or <title> and <desc>).
+## Program Functionality
+to run the program, simply run main.py in your preferred python environment. Each step will be ran in their respective .py program: 
+`1.` preprocess.py
+`2.` Indexer.py
+`3.` RankerAndRetriever.py
 
+## Functionality
+The Assignment's task was to implement an Information Retrieval System for a collection of documents, similarly formatted to .xml files. The steps are as follows:
+1.  the Preprocessor finds all elements of "text" within the files, identifying the textboxes in the folder. it will then tokenize each word in the dictionary. The dictionary is saved as a .jason and used in step 2.
+2. The indexer will use the tokenized dictionary to identify the weight of each word in the collection. it will do this process using the word frequency in the collection. Through this process, it will create an inverted index.
+3. Finally, compute the cosine similarity scores in the inverted index between each document. This will identify the topics that are most similar between eachother.
 
-Relevance Judgments 
--------------------------------------------
+## Algorithms, Data Structures & Optimizations
 
-To facilitate information retrieval experimentation, the ideal 
-solution for the Test Topics is given in qrels1-50ap.txt 
-The file contains binary relevance scores in the format used by 
-trec_eval:
-        
-TopicNumber DummyColumn DOCNO BinaryRelevance
+The preprocessor takes the original folder and compiles it into a .json dictionary. We used BeautifulSoup as a library that easily identifies the parts of the documents which are in textboxes. This is because bs4 is an xml parser, which allows us to parse eloquently. For stopwords and punctuation, we merely use nltk library to remove it. 
 
-where DummyColumn is always zero, DOCNO is in the document name
-as explained above and BinaryRelevance is either 0 or 1.  The
-relevance scores are sorted by topic, in ascending order.
+## Vocabulary & Tokens
 
+## Mean Average Precision Score (trec_eval)
 
-Examples:
-
-Document 
------------------
-<DOC>
-<DOCNO> AP880212-0004 </DOCNO>
-<FILEID>AP-NR-02-12-88 1637EST</FILEID>
-<1ST_LINE>r w AM-PeanutSupports     02-12 0155</1ST_LINE>
-<2ND_LINE>AM-Peanut Supports,150</2ND_LINE>
-<HEAD>Peanut Price Supports Will Go Higher This Year</HEAD>
-<DATELINE>WASHINGTON (AP) </DATELINE>
-<TEXT>
-   Price supports for peanuts grown under 1988
-quotas will be $615.27 per ton, an increase of $7.80 from last
-year, the Agriculture Department said Friday.
-   Deputy Secretary Peter C. Myers said the increase was required
-by a formula in the law which takes rising production costs into
-consideration.
-   The annual quota is set at a level equal to the estimated
-quantity of peanuts that will be needed for domestic edible uses,
-seed and related purposes.
-   Production of non-quota peanuts, which can be grown for peanut
-oil and meal, and for export, will be supported at $149.75 per ton,
-unchanged from last year, Myers said.
-   In setting the support for non-quota peanuts, officials are
-required to consider certain factors, including the demand for oil
-and meal, the expected prices for other vegetable oils and meals,
-and the foreign demand for peanuts.
-</TEXT>
-</DOC>
-
-
-
-Query (topic)
--------------
-<num>1
-<title>Coping with overcrowded prisons
-<desc>
-The document will provide information on jail and prison overcrowding and 
-how inmates are forced to cope with those conditions; or it will reveal 
-plans to relieve the overcrowded condition.
-<narr>
-A relevant document will describe scenes of overcrowding that have 
-become all too common in jails and prisons around the country.  The 
-document will identify how inmates are forced to cope with those 
-overcrowded conditions, and/or what the Correctional System is doing, 
-or planning to do, to alleviate the crowded condition.
-</top>
-
-
-Relevance judgements
---------------------
-3 0 AP880731-0027 0
-3 0 AP880803-0028 0
-3 0 AP880803-0211 1
-3 0 AP880804-0010 0
-...
+## Results
