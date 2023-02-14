@@ -9,6 +9,7 @@ from nltk import TreebankWordTokenizer
 import json
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
 
 # author: Simon Proulx 300067852
 # comments: code is not currently finished. Full version will be available soon
@@ -24,28 +25,33 @@ def do_preprocessor(filepath):
     
     punct_set = set(string.punctuation)
     
-    print(filepath)
-    
     document_word_dict = {}
     
+    textList = []
+    
     for filename in os.listdir(filepath):
-        p = Path(filepath+"/"+filename)
-        p.rename(p.with_suffix('.xml'))
         
-        with open(filepath+"/"+filename+".xml", encoding = "utf-8-sig") as file:
-            
-            tree = ET.fromstring(file.read())
-            for node in tree.iter('text'):
-                print('\n')
-                
-            
+        
+        
+        
+        with open(filepath+"/"+filename, encoding = "utf-8") as file:
+            soup=BeautifulSoup(file, features='lxml')
             
             
-        pr = Path(filepath+"/"+filename+".xml")
-        pr.rename(p.with_suffix(''))
+        
+        res=soup.findAll("text")
+        print(type(res))
+        
+        for x in res:
+            textList.append(str(x))
+        
+        print(len(textList))
+        
+        
+        print(filename)
     
 
-
+    # ALL CODE UNDER THIS HAS BEEN UNTESTED.
     #Save to folder
     #Important: When we test later, we only need to load the json file (No need to recreate a new file every query)
     document_word_dict_path = "document_word_dict.json"
