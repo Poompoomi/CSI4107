@@ -1,6 +1,7 @@
 ﻿# CSI4107 Data Retrieval - Assignment 1 - Group 12
 
-### Assignment Reference
+### Assignment References
+https://github.com/Poompoomi/CSI4107
 https://www.site.uottawa.ca/~diana/csi4107/A1_2023.htm
 ## Group 12 Members & Contribution:
 * Simon Proulx 300067852 - Part of Step 1 & general project organization (github, report file, etc.)
@@ -30,8 +31,10 @@ The Assignment's task was to implement an Information Retrieval System for a col
 
 The preprocessor takes the original folder and compiles it into a .json dictionary. We used BeautifulSoup as a library that easily identifies the parts of the documents which are in textboxes. This is because bs4 is an xml parser, which allows us to parse eloquently. For stopwords and punctuation, we merely use nltk library to remove it. 
 
+
 ## Vocabulary & Tokens
 
 ## Mean Average Precision Score (trec_eval)
-
+please send an email to any of the group members for MAPS. the results were too big to send in the .zip file.
 ## Results
+please send an email to any of the group members for our solution. The results were too big to send in the .zip file.
